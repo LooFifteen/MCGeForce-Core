@@ -138,7 +138,6 @@ void MCGeForce::showHighlightsEditor()
 void MCGeForce::requestPermission(void)
 {
 	NVGSDK_Scope scopes[] = { NVGSDK_SCOPE_HIGHLIGHTS, NVGSDK_SCOPE_HIGHLIGHTS_VIDEO, NVGSDK_SCOPE_HIGHLIGHTS_SCREENSHOT };
-	NVGSDK_ScopePermission scopePermissions[3];
 
 	NVGSDK_RequestPermissionsParams params;
 	params.scopeTable = &scopes[0];
