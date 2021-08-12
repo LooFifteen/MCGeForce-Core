@@ -61,7 +61,7 @@ void MCGeForce::init(const char* id)
 		requestPermission();
 		addGroup(id, "MCGeForce");
 
-		NVGSDK_Highlight highlights[4] = { 0 };
+		NVGSDK_Highlight highlights[5] = { 0 };
 
 		NVGSDK_LocalizedPair highlight1Translation[1] = { { "en-US", "Kill" } };
 		highlights[0].id = "mcg_kill";
@@ -95,9 +95,17 @@ void MCGeForce::init(const char* id)
 		highlights[3].nameTable = &highlight4Translation[0];
 		highlights[3].nameTableSize = 1;
 
+		NVGSDK_LocalizedPair highlight5Translation[1] = { { "en-US", "Clip" } };
+		highlights[4].id = "mcg_clip";
+		highlights[4].userInterest = true;
+		highlights[4].highlightTags = NVGSDK_HIGHLIGHT_TYPE_MILESTONE;
+		highlights[4].significance = NVGSDK_HIGHLIGHT_SIGNIFICANCE_NEUTRAL;
+		highlights[4].nameTable = &highlight5Translation[0];
+		highlights[4].nameTableSize = 1;
+
 		NVGSDK_HighlightConfigParams params = { 0 };
 		params.highlightDefinitionTable = &highlights[0];
-		params.highlightTableSize = 4;
+		params.highlightTableSize = 5;
 		params.defaultLocale = "en-US";
 		NVGSDK_Highlights_ConfigureAsync(handle, &params, NULL, NULL);
 	}
