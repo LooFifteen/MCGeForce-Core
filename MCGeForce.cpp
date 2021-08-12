@@ -13,7 +13,7 @@ class MCGeForce {
 public:
 	const char* id;
 
-	void init(const char* id);
+	int init(const char* id);
 	void addGroup(const char* id, const char *name);
 	void setVideoHighlight(const char* highlightId, int start, int end);
 	void showHighlightsEditor();
@@ -32,7 +32,7 @@ void asyncCallback(NVGSDK_RetCode ret, void* v) {
 	}
 }
 
-void MCGeForce::init(const char* id)
+int MCGeForce::init(const char* id)
 {	
 	MCGeForce::id = id;
 	NVGSDK_Scope scopes[] = { NVGSDK_SCOPE_HIGHLIGHTS, NVGSDK_SCOPE_HIGHLIGHTS_VIDEO, NVGSDK_SCOPE_HIGHLIGHTS_SCREENSHOT };
@@ -109,6 +109,8 @@ void MCGeForce::init(const char* id)
 		params.defaultLocale = "en-US";
 		NVGSDK_Highlights_ConfigureAsync(handle, &params, NULL, NULL);
 	}
+
+	return returnCode;
 }
 
 void MCGeForce::addGroup(const char* id, const char* name)
@@ -156,11 +158,11 @@ void MCGeForce::requestPermission(void)
 
 static MCGeForce instance;
 
-JNIEXPORT void JNICALL Java_dev_decobr_mcgeforce_bindings_MCGeForceHelper_init
+JNIEXPORT jint JNICALL Java_dev_decobr_mcgeforce_bindings_MCGeForceHelper_init
 (JNIEnv* env, jobject obj, jstring arg1) {
 	const char* arg1native = env->GetStringUTFChars(arg1, 0);
 
-	instance.init(arg1native);
+	return instance.init(arg1native);
 }
 
 JNIEXPORT void JNICALL Java_dev_decobr_mcgeforce_bindings_MCGeForceHelper_setVideoHighlight

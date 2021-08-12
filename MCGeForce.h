@@ -25,7 +25,7 @@ extern "C" {
 	 * Method:    init
 	 * Signature: (Ljava/lang/String;)V
 	 */
-	JNIEXPORT void JNICALL Java_dev_decobr_mcgeforce_bindings_MCGeForceHelper_init
+	JNIEXPORT jint JNICALL Java_dev_decobr_mcgeforce_bindings_MCGeForceHelper_init
 	(JNIEnv*, jobject, jstring);
 
 	/*
